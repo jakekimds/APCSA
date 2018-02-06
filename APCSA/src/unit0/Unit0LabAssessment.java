@@ -1,4 +1,5 @@
 package unit0;
+
 import java.util.Scanner;
 /*
 Fork this program and edit the name of your program Name_Unit0LabAssessment
@@ -39,25 +40,24 @@ because Math.pow returns a double and Java complains if I try to assign a double
 to make sure it worked as expected.
 */
 class Unit0LabAssessment {
-  public static void main(String[] args) {
-    
-    //use this scanner object to get user input
-    Scanner keyboard = new Scanner(System.in);
-    
-    
-    //Get the input values
-    System.out.print("Enter Investment Amount: ");
-    float investmentAmount = keyboard.nextFloat();
-    
-    System.out.print("Enter Annual Interest Rate: ");
-    float annualInterestRate = keyboard.nextFloat();
-    float monthlyInterestRate = annualInterestRate / 1200;
-    
-    System.out.print("Enter Number of Years: ");
-    float numberOfYears = keyboard.nextFloat();
-    
-    //Calculate and display the accumulated value
-    double futureInvestmentValue = investmentAmount * Math.pow(1 + monthlyInterestRate, numberOfYears*12);
-    System.out.println("Accumulated value is  "+futureInvestmentValue);
-  }
+	public static void main(String[] args) {
+
+		// use this scanner object to get user input
+		Scanner keyboard = new Scanner(System.in);
+
+		// Get the input values
+		System.out.print("Enter Investment Amount: ");
+		float investmentAmount = keyboard.nextFloat();
+
+		System.out.print("Enter Annual Interest Rate: ");
+		float annualInterestRate = keyboard.nextFloat();
+		float monthlyInterestRate = annualInterestRate / 1200;
+
+		System.out.print("Enter Number of Years: ");
+		float numberOfYears = keyboard.nextFloat();
+
+		// Calculate and display the accumulated value
+		double futureInvestmentValue = investmentAmount * Math.pow(1 + monthlyInterestRate, numberOfYears * 12);
+		System.out.println("Accumulated value is  " + futureInvestmentValue);
+	}
 }
