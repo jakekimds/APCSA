@@ -1,5 +1,7 @@
 package unit1;
 
+import java.awt.AWTError;
+import java.awt.Color;
 import javax.swing.JFrame;
 
 public class GraphicsRunner extends JFrame {
@@ -11,7 +13,7 @@ public class GraphicsRunner extends JFrame {
 
 		setSize(WIDTH, HEIGHT);
 
-		getContentPane().add(new Robot());
+		getContentPane().add(new ShapePanel());
 
 		setVisible(true);
 	}
