@@ -59,5 +59,6 @@ class Unit0LabAssessment {
 		// Calculate and display the accumulated value
 		double futureInvestmentValue = investmentAmount * Math.pow(1 + monthlyInterestRate, numberOfYears * 12);
 		System.out.println("Accumulated value is  " + futureInvestmentValue);
+		keyboard.close();
 	}
 }

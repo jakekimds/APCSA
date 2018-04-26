@@ -1,9 +1,8 @@
 package unit1;
 
-import java.awt.AWTError;
-import java.awt.Color;
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class GraphicsRunner extends JFrame {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 800;
