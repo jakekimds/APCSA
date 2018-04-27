@@ -60,6 +60,14 @@ public abstract class MovingThing implements Locatable {
 			setY(getY() + getSpeed());
 		}
 	}
+	
+	public boolean didCollide(int thisWidth, int thisHeight, MovingThing obj, int height, int width){
+		if (this.getX() < obj.getX() + width && this.getX() + thisWidth > obj.getX()
+				&& this.getY() < obj.getY() + height && this.getY() + thisHeight > obj.getY()) {
+			return true;
+		}
+		return false;
+	}
 
 	public String toString() {
 		return "";

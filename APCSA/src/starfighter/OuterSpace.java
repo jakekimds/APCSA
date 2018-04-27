@@ -28,9 +28,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	private String direction;
 
 	private ArrayList<Ammo> shots;
+	private ArrayList<Ammo> alienShots;
+	private int alienShotCountDownDelay = 50;
+	private int alienShotCountDown = alienShotCountDownDelay;
 
 	private boolean[] keys;
 	private BufferedImage back;
+	private Powerup pu;
 
 	public OuterSpace() {
 		setBackground(Color.black);
@@ -41,6 +45,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		ship = new Ship(400, 400, 2);
 		aliens = new Aliens(3, 5);
 		shots = new ArrayList<Ammo>();
+		alienShots = new ArrayList<Ammo>();
 		direction = "LEFT";
 
 		this.addKeyListener(this);
@@ -48,6 +53,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		score = 0;
 		gameOver = false;
 		bgColor = Color.BLACK;
+		
+		pu = Powerup.getRandomPowerup(0, 800, 3*80, 600);
 
 		setVisible(true);
 	}
@@ -102,6 +109,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 			}
 			aliens.moveDown(10);
 		}
+		
+		Alien random = aliens.chooseRandom();
+		if(random != null && alienShotCountDown <= 0){
+			alienShots.add(new Ammo(random.getX() + 40, random.getY()+80, 10, Color.green));
+			alienShotCountDown = alienShotCountDownDelay;
+		}else{
+			alienShotCountDown--;
+		}
+		
 		if (!gameOver) {
 			if (aliens.didCollide(ship, 80, 80)) {
 				gameOver = true;
@@ -121,6 +137,29 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 			} else if (aliens.didCollide(shots.get(i), 10, 10)) {
 				shots.remove(i);
 				score++;
+			}
+		}
+		
+		for (int i = 0; i < alienShots.size(); i++) {
+			alienShots.get(i).move("BOTTOM");
+			alienShots.get(i).draw(graphToBack);
+			if (alienShots.get(i).getY() < 0 || alienShots.get(i).getY() > 600) {
+				alienShots.remove(i);
+			}else if(ship.didCollide(80, 80, alienShots.get(i), 10, 10) ){
+				if(!ship.isShielded()){
+					score--;
+				}else{
+					ship.attack();
+				}
+				alienShots.remove(i);
+			}
+		}
+		
+		if(pu != null){
+			pu.draw(graphToBack);
+			if(pu.didCollide(80, 80, ship, 80, 80)){
+				ship.activateShield();
+				pu = null;
 			}
 		}
 
@@ -175,7 +214,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	public void run() {
 		try {
 			while (true) {
-				Thread.currentThread().sleep(3);
+				Thread.currentThread().sleep(5);
 				repaint();
 			}
 		} catch (Exception e) {

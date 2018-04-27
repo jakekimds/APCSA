@@ -15,7 +15,8 @@ import javax.imageio.ImageIO;
 public class Ship extends MovingThing {
 	private int speed;
 	private Image image;
-
+	private int shieldStrength = 0;
+	
 	public Ship() {
 		this(0, 0, 0);
 	}
@@ -27,11 +28,33 @@ public class Ship extends MovingThing {
 	public Ship(int x, int y, int s) {
 		super(x, y);
 		speed = s;
+		loadImage("src/starfighter/ship.jpg");
+	}
+	
+	public void loadImage(String path){
 		try {
-			image = ImageIO.read(new File("src/starfighter/ship.jpg"));
+			image = ImageIO.read(new File(path));
 		} catch (Exception e) {
 			//feel free to do something here
 		}
+	}
+	
+	public void activateShield(){
+		loadImage("src/starfighter/ship.jpgWithShield.jpg");
+		shieldStrength = 3;
+	}
+	
+	public void attack(){
+		if(isShielded()){
+			shieldStrength--;
+			if(shieldStrength <= 0){
+				loadImage("src/starfighter/ship.jpg");
+			}
+		}
+	}
+	
+	public boolean isShielded(){
+		return shieldStrength > 0;
 	}
 
 	public void setSpeed(int s) {

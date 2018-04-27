@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 
 public class Ammo extends MovingThing {
 	private int speed;
+	private Color color;
 
 	public Ammo() {
 		this(0, 0, 0);
@@ -24,8 +25,12 @@ public class Ammo extends MovingThing {
 	}
 
 	public Ammo(int x, int y, int s) {
+		this(x,y,s,Color.red);
+	}
+	public Ammo(int x, int y, int s, Color col) {
 		super(x, y);
 		setSpeed(s);
+		color = col;
 	}
 
 	public void setSpeed(int s) {
@@ -37,7 +42,7 @@ public class Ammo extends MovingThing {
 	}
 
 	public void draw(Graphics window) {
-		window.setColor(Color.red);
+		window.setColor(color);
 		window.fillRect(getX(), getY(), 10, 10);
 	}
 

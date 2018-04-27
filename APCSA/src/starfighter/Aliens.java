@@ -25,6 +25,23 @@ public class Aliens {
 		}
 	}
 	
+	public Alien chooseRandom(){
+		int num = (int)(Math.random() * count());
+		int count = 0;
+		for (int r = 0; r < aliens.length; r++) {
+			for (int c = 0; c < aliens[r].length; c++) {
+				Alien alien = aliens[r][c];
+				if (alien != null) {
+					if(count >= num){
+						return alien;
+					}
+					count++;
+				}
+			}
+		}
+		return null;
+	}
+	
 	public void moveDown(int amount){
 		for (int r = 0; r < aliens.length; r++) {
 			for (int c = 0; c < aliens[r].length; c++) {
