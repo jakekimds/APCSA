@@ -17,7 +17,7 @@ public class MyFirstBot extends Robot {
 		// Robot main loop
 		while(true) {
 			// Replace the next 4 lines with any behavior you would like
-			//turnGunRight(5);
+			turnGunRight(5);
 		}
 	}
 
