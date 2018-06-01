@@ -17,10 +17,7 @@ public class MyFirstBot extends Robot {
 		// Robot main loop
 		while(true) {
 			// Replace the next 4 lines with any behavior you would like
-			ahead(100);
-			turnGunRight(360);
-			back(100);
-			turnGunRight(360);
+			//turnGunRight(5);
 		}
 	}
 
@@ -29,7 +26,6 @@ public class MyFirstBot extends Robot {
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
 		// Replace the next line with any behavior you would like
-		fire(1);
 	}
 
 	/**
@@ -37,7 +33,6 @@ public class MyFirstBot extends Robot {
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
 		// Replace the next line with any behavior you would like
-		back(10);
 	}
 	
 	/**
@@ -45,6 +40,5 @@ public class MyFirstBot extends Robot {
 	 */
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
-		back(20);
 	}	
 }
