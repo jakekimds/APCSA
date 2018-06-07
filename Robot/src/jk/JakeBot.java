@@ -2,7 +2,7 @@ package jk;
 
 import robocode.*;
 
-public class MyFirstBot extends Robot {
+public class JakeBot extends Robot {
 	/**
 	 * run: Robot's default behavior
 	 */
@@ -33,8 +33,10 @@ public class MyFirstBot extends Robot {
 //			}
 			turnRadarRight(1000);
 			scan();
+			
 		}
 	}
+
 
 	/**
 	 * onScannedRobot: What to do when you see another robot
@@ -77,7 +79,7 @@ public class MyFirstBot extends Robot {
 	 * onHitWall: What to do when you hit a wall
 	 */
 	public void onHitWall(HitWallEvent e) {
-		turnRight(lastHead);
-		ahead(100);
+		//turnRight(e.getBearing());
+		//ahead(100);
 	}	
 }
